@@ -26,3 +26,43 @@ void detonate(vector<string>& grid, const vector<string>& previous_grid)
         }
     }
 }
+
+vector<string> bomberMan(int n, vector<string> grid)
+{
+    vector<string> initial_grid{ grid };
+    vector<string> full_of_bombs{ grid };
+    vector<string> pattern_a;
+
+    size_t r{ grid.size() };
+    size_t c{ grid[0].size() };
+
+    for (int i = 0; i < r; ++i)
+        for (int j = 0; j < c; ++j)
+            grid[i][j] = 'O';
+
+    for (int i = 0; i < r; ++i)
+        for (int j = 0; j < c; ++j)
+            full_of_bombs[i][j] = 'O';
+
+    detonate(grid, initial_grid);
+
+    pattern_a = grid;
+
+    for (int i = 0; i < r; ++i)
+        for (int j = 0; j < c; ++j)
+            grid[i][j] = 'O';
+
+    detonate(grid, pattern_a);
+
+    int k{ n % 4 };
+
+    if (n == 1)
+        return initial_grid;
+
+    if (k == 0 || k == 2)
+        return full_of_bombs;
+    else if (k == 3)
+        return pattern_a;
+
+    return grid;
+}
