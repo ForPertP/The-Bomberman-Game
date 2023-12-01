@@ -1,3 +1,20 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+string ltrim(const string &);
+string rtrim(const string &);
+vector<string> split(const string &);
+
+/*
+ * Complete the 'bomberMan' function below.
+ *
+ * The function is expected to return a STRING_ARRAY.
+ * The function accepts following parameters:
+ *  1. INTEGER n
+ *  2. STRING_ARRAY grid
+ */
+
 void detonate(vector<string>& grid, const vector<string>& previous_grid)
 {
     size_t r{ grid.size() };
