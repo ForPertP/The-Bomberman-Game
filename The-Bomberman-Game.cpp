@@ -83,3 +83,45 @@ vector<string> bomberMan(int n, vector<string> grid)
 
     return grid;
 }
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string first_multiple_input_temp;
+    getline(cin, first_multiple_input_temp);
+
+    vector<string> first_multiple_input = split(rtrim(first_multiple_input_temp));
+
+    int r = stoi(first_multiple_input[0]);
+
+    int c = stoi(first_multiple_input[1]);
+
+    int n = stoi(first_multiple_input[2]);
+
+    vector<string> grid(r);
+
+    for (int i = 0; i < r; i++) {
+        string grid_item;
+        getline(cin, grid_item);
+
+        grid[i] = grid_item;
+    }
+
+    vector<string> result = bomberMan(n, grid);
+
+    for (size_t i = 0; i < result.size(); i++) {
+        fout << result[i];
+
+        if (i != result.size() - 1) {
+            fout << "\n";
+        }
+    }
+
+    fout << "\n";
+
+    fout.close();
+
+    return 0;
+}
+
