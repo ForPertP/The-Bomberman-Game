@@ -23,6 +23,28 @@ class Result
      *  1. INTEGER n
      *  2. STRING_ARRAY grid
      */
+
+    public static void Detonate(List<string> currentGrid, List<string> previousGrid)
+    {
+        int rows = currentGrid.Count;
+        int cols = currentGrid[0].Length;
+
+        for (int i = 0; i < rows; ++i)
+        {
+            for (int j = 0; j < cols; ++j)
+            {
+                if (previousGrid[i][j] == 'O')
+                {
+                    currentGrid[i] = currentGrid[i].Remove(j, 1).Insert(j, ".");
+                    if (i + 1 < rows) currentGrid[i + 1] = currentGrid[i + 1].Remove(j, 1).Insert(j, ".");
+                    if (i - 1 < rows && i - 1 >= 0) currentGrid[i - 1] = currentGrid[i - 1].Remove(j, 1).Insert(j, ".");
+                    if (j + 1 < cols) currentGrid[i] = currentGrid[i].Remove(j + 1, 1).Insert(j + 1, ".");
+                    if (j - 1 < cols && j - 1 >= 0) currentGrid[i] = currentGrid[i].Remove(j - 1, 1).Insert(j - 1, ".");
+                }
+            }
+        }
+    }
+    
 }
 
 
