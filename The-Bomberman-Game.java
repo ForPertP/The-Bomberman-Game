@@ -12,6 +12,28 @@ import static java.util.stream.Collectors.toList;
 
 class Result {
 
+   public static void detonate(List<String> currentGrid, List<String> previousGrid) {
+        int rows = currentGrid.size();
+        int cols = currentGrid.get(0).length();
+
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < cols; ++j) {
+                if (previousGrid.get(i).charAt(j) == 'O') {
+                    currentGrid.set(i, currentGrid.get(i).substring(0, j) + "." + currentGrid.get(i).substring(j + 1));
+                    if (i + 1 < rows)
+                        currentGrid.set(i + 1, currentGrid.get(i + 1).substring(0, j) + "." + currentGrid.get(i + 1).substring(j + 1));
+                    if (i - 1 < rows && i - 1 >= 0)
+                        currentGrid.set(i - 1, currentGrid.get(i - 1).substring(0, j) + "." + currentGrid.get(i - 1).substring(j + 1));
+                    if (j + 1 < cols)
+                        currentGrid.set(i, currentGrid.get(i).substring(0, j + 1) + "." + currentGrid.get(i).substring(j + 2));
+                    if (j - 1 < cols && j - 1 >= 0)
+                        currentGrid.set(i, currentGrid.get(i).substring(0, j - 1) + "." + currentGrid.get(i).substring(j));
+                }
+            }
+        }
+    }
+
+    
     /*
      * Complete the 'bomberMan' function below.
      *
